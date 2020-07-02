@@ -14,12 +14,21 @@
       var canvas = document.getElementById("canvas"); //canvasタグ情報取得
       // ここにコードを書いていきます
       var circle = canvas.getContext('2d');　//変数circleにcanvas情報入れる
-      circle.beginPath();　//パス作成
-      //描写cmd　start
-      circle.arc(320,240,150,0 * Math.PI / 180,360 * Math.PI, true);　//X座標、Y座標、r、sラジアン変換（0°）、eラジアン変換（360°）、右周りで推移
-      circle.strokeStyle = "#fff";　//線の色指定
-      circle.stroke();　//線を描写
-      //描写cmd　end
+
+      setInterval(function(){ //1sec毎に下記関数実行
+        circle.clearRect(0,0,canvas.width,canvas.height); //変数circleのcanvas描写をオールクリア
+
+        var targetX = 10 + Math.floor(Math.random() * 620); //x = 10~630 canvasからはみ出さない
+        var targetY = 10 + Math.floor(Math.random() * 460); //y = 10~450
+        
+        circle.beginPath();　//パス作成
+        //描写cmd　start
+        circle.arc(targetX,targetY,10,0 * Math.PI / 180,360 * Math.PI, true);　//X座標、Y座標、r、sラジアン変換（0°）、eラジアン変換（360°）、右周りで推移
+        circle.strokeStyle = "#fff";　//線の色指定
+        circle.stroke();　//線を描写
+        //描写cmd　end
+      },1000);
+
     </script>
   </body>
 </html>
