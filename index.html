@@ -14,35 +14,37 @@
     <script>
       var canvas = document.getElementById("canvas"); //canvasタグ情報取得
       // ここにコードを書いていきます
-      var circle = canvas.getContext('2d');　//変数circleにcanvas情報入れる
+      var context = canvas.getContext('2d');　//変数circleにcanvas情報入れる
 
-      canvas.addEventListener('click',(canvasClick) => {
+      canvas.addEventListener('click',(e) => {
 
-        var targetX = canvasClick.offsetX; //x = 要素内左上を基準にクリック座標取得
-        var targetY = canvasClick.offsetY; //y = 要素内左上を基準にクリック座標取得
+        var targetX = e.offsetX; //x = 要素内左上を基準にクリック座標取得
+        var targetY = e.offsetY; //y = 要素内左上を基準にクリック座標取得
         console.log(targetX);
         console.log(targetY);
 
         loop(); //関数loop実行
         function loop(){
-          circle.clearRect(0,0,canvas.width,canvas.height); //変数circleのcanvas描写をオールクリア
-          circle.beginPath();　//パス作成
+          context.clearRect(targetX - 12,targetY -11,22,22); //X座標 = ++targetX,r,stroke_width Y座標 = r,stroke_width
+
+          context.beginPath();　//パス作成
           //描写cmd　start
-          circle.arc(targetX,targetY,10,0 * Math.PI / 180,360 * Math.PI, true);　//X座標、Y座標、r、sラジアン変換（0°）、eラジアン変換（360°）、右周りで推移
-          circle.strokeStyle = "#fff";　//線の色指定
-          circle.stroke();　//線を描写
+          context.arc(targetX,targetY,10,0 * Math.PI / 180,360 * Math.PI, true);　//X座標、Y座標、r、sラジアン変換（0°）、eラジアン変換（360°）、右周りで推移
+          context.strokeStyle = "#fff";　//線の色指定
+          context.stroke();　//線を描写
+          context.closePath();
           //描写cmd　end
 
           targetX = ++targetX; //1pxずつ加算（style当てる訳じゃないから整数1でOK）
           console.log(targetX);
           var requestID = requestAnimationFrame(loop);　//戻り値(requestAnimationFrameの完了結果）を変数requestIDへ代入
 
-          if(targetX > 630){ //右端に着いた時の処理
+          if(targetX >= 630){ //右端に着いた時の処理
             cancelAnimationFrame(requestID);　//右端に着いたときにcancelAnimationFrameへ戻り値を代入してキャンセルする
           }
         }
       });
     </script>
   </body>
-  
+
 </html>
