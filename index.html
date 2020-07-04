@@ -35,7 +35,7 @@
           context.closePath();
           //描写cmd　end
 
-          targetX = ++targetX; //1pxずつ加算（style当てる訳じゃないから整数1でOK）
+          targetX++; //1pxずつ加算（style当てる訳じゃないから整数1でOK）
           console.log(targetX);
           var requestID = requestAnimationFrame(loop);　//戻り値(requestAnimationFrameの完了結果）を変数requestIDへ代入
 
