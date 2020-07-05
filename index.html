@@ -16,51 +16,42 @@
       // ここにコードを書いていきます
       var context = canvas.getContext('2d');　//変数circleにcanvas情報入れる
 
-      class ball{
+      class ball{ //クラス定義
         constructor(x,y){
           this.x = x;
           this.y = y;
         }
       }
 
-      const array_ball = [];
+      const array_ball = [];　//クラスballを入れる配列定義
 
       canvas.addEventListener('click',(e) => {
-        let ball_a = new ball(e.offsetX,e.offsetY);
+        let ball_a = new ball(e.offsetX,e.offsetY);　//クリック時座標を入れ配列の先頭に格納
         array_ball.unshift(ball_a);
         console.log(array_ball);
-
-        //console.log(array_ball);
-
-//        var targetX = e.offsetX; //x = 要素内左上を基準にクリック座標取得
-//        var targetY = e.offsetY; //y = 要素内左上を基準にクリック座標取得
-//        console.log(targetX);
-//        console.log(targetY);
-
+      });
 
        loop(); //関数loop実行
-        function loop(){
-          context.clearRect(0,0,canvas.width,canvas.height);
-          for(let i = 0; i < array_ball.length; i++){
-            context.beginPath();　//パス作成
-            //描写cmd　start
-            context.arc(array_ball[i].x,array_ball[i].y,10,0 * Math.PI / 180,360 * Math.PI, true);　//X座標、Y座標、r、sラジアン変換（0°）、eラジアン変換（360°）、右周りで推移
-            context.strokeStyle = "#fff";　//線の色指定
-            context.stroke();　//線を描写
-            context.closePath();
-            //描写cmd　end
+       function loop(){
+         context.clearRect(0,0,canvas.width,canvas.height);
+         for(let i = 0; i < array_ball.length; i++){
+           context.beginPath();　//パス作成
+           //描写cmd　start
+           context.arc(array_ball[i].x,array_ball[i].y,10,0 * Math.PI / 180,360 * Math.PI, true);　//X座標、Y座標、r、sラジアン変換（0°）、eラジアン変換（360°）、右周りで推移
+           context.strokeStyle = "#fff";　//線の色指定
+           context.stroke();　//線を描写
+           context.closePath();
+           //描写cmd　end
 
-            array_ball[i].x++; //1pxずつ加算（style当てる訳じゃないから整数1でOK）
-            console.log(array_ball[i].x);
-          }
-          var requestID = requestAnimationFrame(loop);　//戻り値(requestAnimationFrameの完了結果）を変数requestIDへ代入
+           array_ball[i].x++; //1pxずつ加算（style当てる訳じゃないから整数1でOK）
+           console.log(array_ball[i].x);
+         }
+         var requestID = requestAnimationFrame(loop);　//戻り値(requestAnimationFrameの完了結果）を変数requestIDへ代入
 
-//
 //          if(targetX >= 630){ //右端に着いた時の処理
 //            cancelAnimationFrame(requestID);　//右端に着いたときにcancelAnimationFrameへ戻り値を代入してキャンセルする
 //          }
-        }
-      });
+       }
     </script>
   </body>
 
