@@ -21,16 +21,15 @@
           this.x = x;
           this.y = y;
         }
-      }
 
-      class Praticle{
         update(){ //座標移動系定義
-          ball.x++; //1pxずつ加算（style当てる訳じゃないから整数1でOK）
+          this.x++; //1pxずつ加算（style当てる訳じゃないから整数1でOK）
         }
+
         draw(){ //描画系定義
           context.beginPath();　//パス作成
           //描写cmd　start
-          context.arc(ball.x,ball.y,10,0,Math.PI * 2, true);　//X座標、Y座標、r、sラジアン変換（0°）、eラジアン変換（360°）、右周りで推移
+          context.arc(this.x,this.y,10,0,Math.PI * 2, true);　//X座標、Y座標、r、sラジアン変換（0°）、eラジアン変換（360°）、右周りで推移
           context.strokeStyle = "#fff";　//線の色指定
           context.stroke();　//線を描写
           context.closePath();
@@ -42,7 +41,7 @@
       canvas.addEventListener('click',(e) => {
         let ball_a = new ball(e.offsetX,e.offsetY);　//クリック時座標を入れ配列の先頭に格納
         array_ball.unshift(ball_a);
-        console.log(ball_a);
+        console.log(array_ball);
       });
 
       loop(); //関数loop実行
@@ -52,7 +51,7 @@
           array_ball[i].draw();
           array_ball[i].update();
         }
-        //var requestID = requestAnimationFrame(loop);　//戻り値(requestAnimationFrameの完了結果）を変数requestIDへ代入
+        var requestID = requestAnimationFrame(loop);　//戻り値(requestAnimationFrameの完了結果）を変数requestIDへ代入
       }
 
     </script>
