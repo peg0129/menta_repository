@@ -16,7 +16,7 @@
       // ここにコードを書いていきます
       var context = canvas.getContext('2d');　//変数circleにcanvas情報入れる
 
-      class ball{ //クラス定義
+      class Ball{ //クラス定義
         constructor(x,y){
           this.x = x;
           this.y = y;
@@ -39,7 +39,7 @@
       const array_ball = [];　//クラスballを入れる配列定義
 
       canvas.addEventListener('click',(e) => {
-        let ball_a = new ball(e.offsetX,e.offsetY);　//クリック時座標を入れ配列の先頭に格納
+        let ball_a = new Ball(e.offsetX,e.offsetY);　//クリック時座標を入れ配列の先頭に格納
         array_ball.unshift(ball_a);
         console.log(array_ball);
       });
