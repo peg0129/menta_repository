@@ -28,6 +28,12 @@
           this.y = this.y + (1 * Math.sin(this.radian)); //半径1=移動距離1　の時の角度に対するy座標を計算　更新
           console.log(this.x);
           console.log(this.y);
+          if(this.x < 10 || this.x > canvas.width - 10){ //左右バウンス条件
+            this.radian = Math.PI - this.radian;
+          }
+          if(this.y < 10 || this.y > canvas.height - 10){ //上下バウンス上限
+            this.radian = 2 * Math.PI - this.radian;
+          }
         }
 
         draw(){ //描画系定義
@@ -50,6 +56,12 @@
           array_ball.unshift(ball_a);
           console.log(array_ball);
         }
+
+        function countup(){ //click→10s経過後ball5個消す
+          let array_ballLength = array_ball.length - 5;
+          array_ball.splice(array_ballLength,5);
+        }
+        setTimeout(countup,10000);
       });
 
       loop(); //関数loop実行
