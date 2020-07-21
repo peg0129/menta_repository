@@ -17,7 +17,7 @@
       var context = canvas.getContext('2d');　//変数circleにcanvas情報入れる
 
       class Ball{ //クラス定義
-        constructor(x,y,radian){
+        constructor(x,y,radian,vector.x,vector.y){
           this.x = x;
           this.y = y;
           this.radian = radian;
@@ -58,7 +58,7 @@
             array_ball.pop();
           }
           setTimeout(countup,10000);
-          let ball_a = new Ball(e.offsetX,e.offsetY,randomRadian);　//クリック時座標を入れ配列の先頭に格納
+          let ball_a = new Ball(e.offsetX,e.offsetY,randomRadian,0,0);　//クリック時座標を入れ配列の先頭に格納
           array_ball.unshift(ball_a);
           console.log(array_ball);
         }
