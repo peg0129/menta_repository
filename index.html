@@ -21,13 +21,22 @@
           this.x = x;
           this.y = y;
           this.radian = radian;
+          this.vector = {};
+          this.vector.x = Math.cos(this.radian);
+          this.vector.y = Math.sin(this.radian);
         }
 
         update(){ //座標移動系定義
-          this.x = this.x + (1 * Math.cos(this.radian)); //半径1=移動距離1　の時の角度に対するx座標を計算　更新
-          this.y = this.y + (1 * Math.sin(this.radian)); //半径1=移動距離1　の時の角度に対するy座標を計算　更新
+          this.x += this.vector.x; //半径1=移動距離1　の時の角度に対するx座標を計算　更新
+          this.y += this.vector.y; //半径1=移動距離1　の時の角度に対するy座標を計算　更新
           console.log(this.x);
           console.log(this.y);
+          if(this.x < 10 || this.x > canvas.width - 10){ //左右バウンス条件
+            this.vector.x *= -1;
+          }
+          if(this.y < 10 || this.y > canvas.height - 10){ //上下バウンス条件
+            this.vector.y *= -1;
+          }
         }
 
         draw(){ //描画系定義
@@ -46,6 +55,10 @@
         for(let c = 0; c < 5; c++){
           let randomDegree = Math.trunc(Math.random() * 360); //0~360までの数をランダム生成
           let randomRadian = randomDegree * (Math.PI / 180); //角度をラジアンへ変換
+          function countup(){
+            array_ball.pop();
+          }
+          setTimeout(countup,10000);
           let ball_a = new Ball(e.offsetX,e.offsetY,randomRadian);　//クリック時座標を入れ配列の先頭に格納
           array_ball.unshift(ball_a);
           console.log(array_ball);
